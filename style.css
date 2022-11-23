@@ -25,18 +25,18 @@ header {
 }
 
 nav {
-	margin-bottom: 1em;
-	text-align: left;
+    margin-bottom: 1em;
+    text-align: left;
 }
 
 nav ul {
-	list-style: none;
+    list-style: none;
 }
 
 nav ul li {
-	margin-right: 0.5em;
-	display: inline;
-	list-style: none;
+    margin-right: 0.5em;
+    display: inline;
+    list-style: none;
 }
 
 article {
@@ -51,8 +51,8 @@ span.last-modified {
 
 footer {
     margin-top: 3rem;
-	text-align: left;
-	font-size: 1rem;
-	color: #606169;
+    text-align: left;
+    font-size: 1rem;
+    color: #606169;
 }
 
