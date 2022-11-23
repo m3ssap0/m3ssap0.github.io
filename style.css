@@ -1,0 +1,58 @@
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
+
+html, body {
+    margin-left: 0.5rem;
+    text-align: left;
+    font-family: 'Inconsolata', Consolas, Ubuntu Mono, monospace;
+    font-size: 1.1rem;
+    color: #e0e1e9;
+    background-color: #222129;
+}
+
+a {
+    color: #44dddd;
+}
+
+a:hover { 
+    color: #dddd44;
+}
+
+header {
+    margin-bottom: 1rem;
+    text-align: left;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+nav {
+	margin-bottom: 1em;
+	text-align: left;
+}
+
+nav ul {
+	list-style: none;
+}
+
+nav ul li {
+	margin-right: 0.5em;
+	display: inline;
+	list-style: none;
+}
+
+article {
+
+}
+
+span.last-modified {
+    font-size: 1rem;
+    font-style: italic;
+    color: #606169;
+}
+
+footer {
+    margin-top: 3rem;
+	text-align: left;
+	font-size: 1rem;
+	color: #606169;
+}
+
