@@ -2,18 +2,19 @@
 
 html, body {
     margin-left: 0.5rem;
-    text-align: left;
+    margin-right: 1.0rem;
+    text-align: justify;
     font-family: 'Inconsolata', Consolas, Ubuntu Mono, monospace;
     font-size: 1.1rem;
     color: #e0e1e9;
     background-color: #222129;
 }
 
-a {
+a[href] {
     color: #44dddd;
 }
 
-a:hover { 
+a[href]:hover { 
     color: #dddd44;
 }
 
@@ -43,7 +44,7 @@ article {
 
 }
 
-span.last-modified {
+span.article-dates {
     font-size: 1rem;
     font-style: italic;
     color: #606169;
