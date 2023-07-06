@@ -40,8 +40,10 @@ nav ul li {
     list-style: none;
 }
 
-article {
-
+blockquote {
+    font-style: italic;
+    border-left: solid #e0e1e9;
+    padding-left: 1em;
 }
 
 code {
@@ -65,4 +67,3 @@ footer {
     font-size: 1rem;
     color: #606169;
 }
-
