@@ -26,7 +26,7 @@
         </nav>
         <article>
             <h1>Secrets leaks prevention with pre-commit hooks and Gitleaks</h1>
-            <span class="article-dates">Created: 2023-09-29 @ 08:49. Last modified: 2023-09-29 @ 18:00.</span>
+            <span class="article-dates">Created: 2023-09-29 @ 08:49. Last modified: 2023-09-29 @ 19:34.</span>
             <a name="problem-statement"><h2>Problem Statement</h2></a>
             <p>Committing in a repository confidential material like passwords, API secrets, private keys is a <strong>severe security issue</strong> and could have <strong>serious consequences</strong>.</p>
             <p>The nature of version control systems is to track all changes performed over time on a specific code base. For this reason, simply removing the leaked material with a subsequential commit is usually not sufficient: a <strong>malicious actor could access to the history</strong> and retrieve the leaked secret, using it to move laterally in the system.</p>
@@ -35,6 +35,7 @@
             <ul>
                 <li><a href="#problem-statement">Problem Statement</a></li>
                 <li><a href="#possible-solution">Possible Solution: Gitleaks + pre-commit</a></li>
+                <li><a href="#extra-mile">Extra Mile: continuous automatic security checks and secrets management</a></li>
                 <li><a href="#references">References</a></li>
             </ul>
             <img src="./images/craiyon_103602_Preventing_secrets_leaks.png" alt="www.craiyon.com - Preventing secrets leaks" width="400" />
@@ -67,6 +68,10 @@ useDefault = true
 [[rules]]
 # Put your custom rules here.
             </code></pre>
+            <a name="extra-mile"><h2>Extra Mile: continuous automatic security checks and secrets management</h2></a>
+            <p>In an enterprise scenario, the above solution is not sufficient to be completely safe.</p>
+            <p>Evaluate the possibility to include tools like Gitleaks in your Software Development LifeCycle (SDLC), for example integrating them in your Continuous Integration / Continuous Delivery (CI/CD) pipelines.</p>
+            <p>Also consider the adoption of secrets management tools, like <a href="https://www.vaultproject.io/" target="_blank"><em>HashiCorp Vault</em></a> or the alternative of your cloud provider. Software engineers will have a concrete solution to their problem and you will effectively manage the secrets ecosystem.</p>
             <a name="references"><h2>References</h2></a>
             <ul>
                 <li><a href="https://gitleaks.io/" target="_blank">Gitleaks - Home page</a></li>
@@ -74,6 +79,7 @@ useDefault = true
                 <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#purging-a-file-from-your-repositorys-history" target="_blank">GitHub - Removing sensitive data from a repository - Purging a file from your repository's history</a></li>
                 <li><a href="https://pre-commit.com/" target="_blank">pre-commit - Home page</a></li>
                 <li><a href="https://github.com/gitleaks/gitleaks#pre-commit" target="_blank">Gitleaks - Integration with pre-commit</a></li>
+                <li><a href="https://www.vaultproject.io/" target="_blank">HashiCorp Vault - Home page</a></li>
             </ul>
         </article>
         <footer>
