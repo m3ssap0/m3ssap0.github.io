@@ -30,7 +30,8 @@ header {
 nav {
     margin-bottom: 1em;
     text-align: left;
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: 'Inconsolata', Consolas, Ubuntu Mono, monospace;
+    font-size: 1.25rem;
 }
 
 nav ul {
