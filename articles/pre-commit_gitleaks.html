@@ -9,7 +9,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/obsidian.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/yaml.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/toml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/shell.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
         <script>hljs.highlightAll();</script>
     </head>
     <body>
@@ -27,7 +28,7 @@
         </nav>
         <article>
             <h1>Secrets leaks prevention with pre-commit hooks and Gitleaks</h1>
-            <span class="article-dates">Created: 2023-09-29 @ 08:49. Last modified: 2023-09-29 @ 19:34.</span>
+            <span class="article-dates">Created: 2023-09-29 @ 08:49. Last modified: 2024-01-15 @ 21:56.</span>
             <a name="problem-statement"><h2>Problem Statement</h2></a>
             <p>Committing in a repository confidential material like passwords, API secrets, private keys is a <strong>severe security issue</strong> and could have <strong>serious consequences</strong>.</p>
             <p>The nature of version control systems is to track all changes performed over time on a specific code base. For this reason, simply removing the leaked material with a subsequential commit is usually not sufficient: a <strong>malicious actor could access to the history</strong> and retrieve the leaked secret, using it to move laterally in the system.</p>
@@ -36,28 +37,99 @@
             <ul>
                 <li><a href="#problem-statement">Problem Statement</a></li>
                 <li><a href="#possible-solution">Possible Solution: Gitleaks + pre-commit</a></li>
+                    <ul>
+                        <li><a href="#native-pre-commit">Using git native pre-commit hooks</a></li>
+                        <li><a href="#pre-commit-framework">Using pre-commit framework</a></li>
+                    </ul>
+                <li><a href="#custom-rules">Custom Gitleaks rules file</a></li>
                 <li><a href="#extra-mile">Extra Mile: continuous automatic security checks and secrets management</a></li>
                 <li><a href="#references">References</a></li>
             </ul>
             <img src="./images/craiyon_103602_Preventing_secrets_leaks.png" alt="www.craiyon.com - Preventing secrets leaks" width="400" />
             <a name="possible-solution"><h2>Possible Solution: Gitleaks + pre-commit</h2></a>
             <p>Luckily for us, there are some tools that can be used to automate leaks detection, blocking a commit operation <em>before</em> the leak happens.</p>
-            <p>The first tool that can help is <strong><em>Gitleaks</em></strong> (<a href="https://gitleaks.io/" target="_blank">reference</a>/<a href="https://github.com/gitleaks/gitleaks" target="_blank">repository</a>).</p>
+            <p>The tool that can help is <strong><em>Gitleaks</em></strong> (<a href="https://gitleaks.io/" target="_blank">reference</a>/<a href="https://github.com/gitleaks/gitleaks" target="_blank">repository</a>).</p>
             <blockquote cite="https://github.com/gitleaks/gitleaks">Gitleaks is a SAST tool for detecting and preventing hardcoded secrets like passwords, api keys, and tokens in git repos. Gitleaks is an easy-to-use, all-in-one solution for detecting secrets, past or present, in your code.</blockquote>
-            <p>Gitleaks, alone, is not able to scan each commit in real time, but it supports the integration with <strong><em><a href="https://pre-commit.com/" target="_blank">pre-commit</a></em></strong> hooks.</p>
+            <p>Gitleaks, alone, is not able to scan each commit in real time, but it supports the integration with <strong><em>pre-commit</em></strong> hooks. With pre-commit hooks, secrets will be detected before the effective commit, preventing the leak at the beginning.</p>
+            <a name="native-pre-commit"><h3>Using git native pre-commit hooks</h3></a>
+            <p>You can use <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" target="_blank">git native pre-commit hooks</a>.</p>
+            <ol>
+                <li>Create a folder where to store global hooks, for example: <code>/home/&lt;your_user&gt;/gitconfig/hooks</code>.</li>
+                <li>Create a file with name <code>pre-commit</code> in folder you just created and paste a code like the following (customized starting from <a href="https://github.com/gitleaks/gitleaks/blob/master/scripts/pre-commit.py" target="_blank">this</a>). Be sure to add the path to your custom Gitleaks rules if needed!
+                    <pre><code class="language-python">
+#!/usr/bin/env python3
+"""Helper script to be used as a pre-commit hook."""
+import os
+import sys
+import subprocess
+
+def gitleaksEnabled():
+    """Determine if the pre-commit hook for gitleaks is enabled."""
+    out = subprocess.getoutput("git config --bool hooks.gitleaks")
+    if out == "false":
+        return False
+    return True
+
+if gitleaksEnabled():
+    exitCode = os.WEXITSTATUS(os.system('gitleaks protect -c &lt;path_to_custom_Gitleaks_rules&gt; -v --staged --redact'))
+    if exitCode == 1:
+        print('''Warning: gitleaks has detected sensitive information in your changes.
+To disable the gitleaks precommit hook run the following command:
+
+    git config hooks.gitleaks false
+''')
+        sys.exit(1)
+else:
+    print('gitleaks precommit disabled\
+     (enable with `git config hooks.gitleaks true`)')
+                    </code></pre>
+                </li>
+                <li>Make the file executable.</li>
+                <li>Edit your global git config file (usually <code>.gitconfig</code> in your home) to add the following lines.
+                    <pre><code class="language-text">
+ [core]
+     hooksPath = /home/&lt;your_user&gt;/gitconfig/hooks
+ [hooks]
+     gitleaks = true
+                    </code></pre>
+                </li>
+            </ol>
+            <a name="pre-commit-framework"><h3>Using pre-commit framework</h3></a>
+            <p>The <a href="https://pre-commit.com/" target="_blank">pre-commit framework</a> can be used as an alternative.</p>
             <blockquote cite="https://pre-commit.com/">pre-commit - A framework for managing and maintaining multi-language pre-commit hooks. Git hook scripts are useful for identifying simple issues before submission to code review. We run our hooks on every commit to automatically point out issues in code such as missing semicolons, trailing whitespace, and debug statements. By pointing these issues out before code review, this allows a code reviewer to focus on the architecture of a change while not wasting time with trivial style nitpicks.</blockquote>
-            <p>With pre-commit hooks, secrets will be detected before the effective commit, preventing the leak at the beginning. The integration is straightforward and it is well described by <a href="https://github.com/gitleaks/gitleaks#pre-commit" target="_blank">Gitleaks documentation</a>.</p>
-            <p>You would probably need some custom rules to detect custom secrets. An example of <code>.pre-commit-config.yaml</code> configuration file using a custom rules file (<code>custom-config.toml</code>) is the following.</p>
-            <pre><code class="language-yaml">
+            <p>The integration is straightforward and it is well described by <a href="https://github.com/gitleaks/gitleaks#pre-commit" target="_blank">Gitleaks documentation</a>.</p>
+            <ol>
+                <li>Install pre-commit framework.
+                    <pre><code class="language-shell">
+pip install pre-commit
+                    </code></pre>
+                </li>
+                <li>Create a <code>.pre-commit-config.yaml</code> file at the root of your repository. An example of <code>.pre-commit-config.yaml</code> configuration file using a custom rules file (<code>custom-config.toml</code>) is the following.</p>
+                    <pre><code class="language-yaml">
 repos:
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.18.0
     hooks:
       - id: gitleaks
         args: ['-c', './custom-config.toml']
-            </code></pre>
-            <p>When creating custom rules files, you could like to extend default rules provided by Gitleaks. An example of <code>custom-config.toml</code> to extend default rules is the following.</p>
-            <pre><code class="language-toml">
+                    </code></pre>
+                </li>
+                <li>Auto-update the config to the latest repos' versions.
+                    <pre><code class="language-shell">
+pre-commit autoupdate
+                    </code></pre>
+                </li>
+                <li>Install the pre-commit hook.
+                    <pre><code class="language-shell">
+pre-commit install
+                    </code></pre>
+                </li>
+            </ol>
+            <p><strong>Tip:</strong> If a rule is detecting itself as a possible violation, reporting the custom rules file, just put the custom rules file name in your <code>.gitignore</code> file.</p>
+            <p><strong>Limitation:</strong> Unfortunately both the configuration and the custom rules file must be replicated in each local repository.</p>
+            <a name="custom-rules"><h2>Custom Gitleaks rules file</h2></a>
+            <p>You would probably need some custom rules to detect custom secrets. When creating custom rules files, you could like to extend default rules provided by Gitleaks. An example of <code>custom-config.toml</code> to extend default rules is the following.</p>
+            <pre><code>
 # Your custom Gitleaks configuration file.
 title = "Your custom Gitleaks rules"
 
@@ -78,6 +150,7 @@ useDefault = true
                 <li><a href="https://gitleaks.io/" target="_blank">Gitleaks - Home page</a></li>
                 <li><a href="https://github.com/gitleaks/gitleaks" target="_blank">Gitleaks - Repository</a></li>
                 <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#purging-a-file-from-your-repositorys-history" target="_blank">GitHub - Removing sensitive data from a repository - Purging a file from your repository's history</a></li>
+                <li><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" target="_blank">git - Customizing Git - Git Hooks</a></li>
                 <li><a href="https://pre-commit.com/" target="_blank">pre-commit - Home page</a></li>
                 <li><a href="https://github.com/gitleaks/gitleaks#pre-commit" target="_blank">Gitleaks - Integration with pre-commit</a></li>
                 <li><a href="https://www.vaultproject.io/" target="_blank">HashiCorp Vault - Home page</a></li>
