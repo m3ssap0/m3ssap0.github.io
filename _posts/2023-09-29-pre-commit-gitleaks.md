@@ -2,6 +2,7 @@
 layout: post
 title: "Secrets leaks prevention with pre-commit hooks and Gitleaks"
 date: 2023-09-29 08:49
+assets: /assets/posts/2023-09-29-pre-commit-gitleaks/
 ---
 
 Committing in a repository confidential material like passwords, API secrets, private keys is a **severe security issue** and could have **serious consequences**.
@@ -15,7 +16,7 @@ There are [techniques to clean repository history](https://docs.github.com/en/au
 * TOC
 {:toc}
 
-![www.craiyon.com - Preventing secrets leaks](images/craiyon_103602_Preventing_secrets_leaks.png)
+![www.craiyon.com - Preventing secrets leaks]({{page.assets}}craiyon_103602_Preventing_secrets_leaks.png)
 
 ## Gitleaks and pre-commit hooks
 

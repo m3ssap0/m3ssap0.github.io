@@ -2,6 +2,7 @@
 layout: post
 title: "Cacti 1.2.24 - Authenticated command injection when using SNMP options (CVE-2023-39362)"
 date: 2023-07-04 04:55
+assets: /assets/posts/2023-07-04-cacti-authenticated-command-injection-snmp/
 ---
 
 In **Cacti 1.2.24**, under certain conditions, an authenticated privileged user, can use a malicious string in the SNMP options of a Device, performing command injection and obtaining **remote code execution** on the underlying server.
@@ -13,7 +14,7 @@ In the depicted scenarios, the reported command injection could lead a disgruntl
 * TOC
 {:toc}
 
-![www.craiyon.com - A frightened humanoid cactus in the desert](images/craiyon_053137_A_frightened_humanoid_cactus_in_the_desert.png)
+![www.craiyon.com - A frightened humanoid cactus in the desert]({{page.assets}}craiyon_053137_A_frightened_humanoid_cactus_in_the_desert.png)
 
 ## Genesis
 
@@ -387,7 +388,7 @@ A similar exploit can be used editing an existing Device, with the same prerequi
 ## Video
 
 <video width="600" controls>
-    <source src="./videos/Cacti 1.2.24 - Command injection - Demo.mp4" type="video/mp4">
+    <source src="{{page.assets}}Cacti 1.2.24 - Command injection - Demo.mp4" type="video/mp4">
     Video of the exploit on vulnerable Cacti 1.2.24 installation.
 </video>
 
