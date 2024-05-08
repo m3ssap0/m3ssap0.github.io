@@ -10,15 +10,8 @@ In the depicted scenarios, the reported command injection could lead a disgruntl
 
 ## Table of Contents
 
-* [Genesis](#genesis)
-* [SNMP](#snmp)
-* [Root Cause](#root-cause)
-* [Prerequisites](#prerequisites)
-* [Example of an exploit](#example-of-an-exploit)
-* [CVSS v3](#cvss-v3)
-* [Video](#video)
-* [Timeline](#timeline)
-* [References](#references)
+* TOC
+{:toc}
 
 ![www.craiyon.com - A frightened humanoid cactus in the desert](images/craiyon_053137_A_frightened_humanoid_cactus_in_the_desert.png)
 
@@ -32,9 +25,9 @@ I chose it as a target because:
 * it's written in PHP, a language that I know decently and is also supported by Semgrep;
 * due to it's nature, it contains a broad number of different scenarios that could appear in a web application, e.g., SQL queries, redirects, files management, *command executions*, and so on;
 * I already had a look at it, with some friends, during our weekly hacking nights, when we analyzed the [CVE-2022-46169 / GHSA-6p93-p743-35gf](https://github.com/Cacti/cacti/security/advisories/GHSA-6p93-p743-35gf) and its root cause.
-So it seemed the perfect candidate to me!</p>
+So it seemed the perfect candidate to me!
 
-Among the other Semgrep rules, the [PHP `exec-use` rule](https://semgrep.dev/playground/r/php.lang.security.exec-use.exec-use?editorMode=advanced) was run. A bunch of findings reported in the `lib/snmp.php` file caught my attention and for this reason I started to investigate deeper.</p>
+Among the other Semgrep rules, the [PHP `exec-use` rule](https://semgrep.dev/playground/r/php.lang.security.exec-use.exec-use?editorMode=advanced) was run. A bunch of findings reported in the `lib/snmp.php` file caught my attention and for this reason I started to investigate deeper.
 
 ## SNMP
 

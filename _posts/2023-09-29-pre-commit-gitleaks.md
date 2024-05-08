@@ -11,10 +11,9 @@ The nature of version control systems is to track all changes performed over tim
 There are [techniques to clean repository history](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#purging-a-file-from-your-repositorys-history) and you can always invalidate a leaked secret, but this could be time consuming and leaks could happen accidentally, without you noticing it.
 
 ## Table of Contents
-* [Gitleaks and pre-commit hooks](#gitleaks-and-pre-commit-hooks)
-* [Custom Gitleaks rules file](#custom-gitleaks-rules-file)
-* [Continuous automatic security checks and secrets management](#continuous-automatic-security-checks-and-secrets-management)
-* [References](#references)
+
+* TOC
+{:toc}
 
 ![www.craiyon.com - Preventing secrets leaks](images/craiyon_103602_Preventing_secrets_leaks.png)
 
