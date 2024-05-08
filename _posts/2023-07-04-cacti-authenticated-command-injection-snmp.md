@@ -4,15 +4,12 @@ title: "Cacti 1.2.24 - Authenticated command injection when using SNMP options (
 date: 2023-07-04 04:55
 ---
 
-## Executive Summary
-
-In Cacti 1.2.24, under certain conditions, an authenticated privileged user, can use a malicious string in the SNMP options of a Device, performing command injection and obtaining remote code execution on the underlying server.
+In **Cacti 1.2.24**, under certain conditions, an authenticated privileged user, can use a malicious string in the SNMP options of a Device, performing command injection and obtaining **remote code execution** on the underlying server.
 
 In the depicted scenarios, the reported command injection could lead a disgruntled user or a compromised account to take over the underlying server on which Cacti is installed and then reach other hosts, e.g., ones monitored by it.
 
 ## Table of Contents
 
-* [Executive Summary](#executive-summary)
 * [Genesis](#genesis)
 * [SNMP](#snmp)
 * [Root Cause](#root-cause)

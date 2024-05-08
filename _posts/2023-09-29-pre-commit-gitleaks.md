@@ -4,7 +4,6 @@ title: "Secrets leaks prevention with pre-commit hooks and Gitleaks"
 date: 2023-09-29 08:49
 ---
 
-## Problem Statement
 Committing in a repository confidential material like passwords, API secrets, private keys is a **severe security issue** and could have **serious consequences**.
 
 The nature of version control systems is to track all changes performed over time on a specific code base. For this reason, simply removing the leaked material with a subsequential commit is usually not sufficient: a **malicious actor could access to the history** and retrieve the leaked secret, using it to move laterally in the system.
@@ -12,7 +11,6 @@ The nature of version control systems is to track all changes performed over tim
 There are [techniques to clean repository history](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#purging-a-file-from-your-repositorys-history) and you can always invalidate a leaked secret, but this could be time consuming and leaks could happen accidentally, without you noticing it.
 
 ## Table of Contents
-* [Problem Statement](#problem-statement)
 * [Possible Solution: Gitleaks and pre-commit hooks](#possible-solution-gitleaks-and-pre-commit-hooks)
 * [Custom Gitleaks rules file](#custom-gitleaks-rules-file)
 * [Extra Mile: continuous automatic security checks and secrets management](#extra-mile-continuous-automatic-security-checks-and-secrets-management)
