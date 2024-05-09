@@ -1,7 +1,10 @@
 ---
 layout: page
 title: About
+assets: /assets/misc/
 ---
+
+<img src="{{page.assets}}avatar-m3ssap0.png" style="height: auto; max-width: 42%; float: right; border-radius: 50%;" alt="Avatar of m3ssap0" />
 
 * AppSec Engineer
 * Security Engineering Manager
