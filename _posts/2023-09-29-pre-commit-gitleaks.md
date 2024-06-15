@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Secrets leaks prevention with pre-commit hooks and Gitleaks"
+title: "Secrets leakage prevention with pre-commit hooks and Gitleaks"
 date: 2023-09-29 08:49
 assets: /assets/posts/2023-09-29-pre-commit-gitleaks/
 ---
