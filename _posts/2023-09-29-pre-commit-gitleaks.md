@@ -3,6 +3,7 @@ layout: post
 title: "Secrets leakage prevention with pre-commit hooks and Gitleaks"
 date: 2023-09-29 08:49
 assets: /assets/posts/2023-09-29-pre-commit-gitleaks/
+assets-meethack: /assets/resources/meethack/
 ---
 
 Committing in a repository confidential material like passwords, API secrets, private keys is a **severe security issue** and could have **serious consequences**.
@@ -99,3 +100,4 @@ Also consider the adoption of secrets management tools, like [*HashiCorp Vault*]
 * [GitHub - Removing sensitive data from a repository - Purging a file from your repository's history](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#purging-a-file-from-your-repositorys-history)
 * [git - Customizing Git - Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 * [HashiCorp Vault - Home page](https://www.vaultproject.io/)
+* ["_Secrets leakage detection & prevention_", presented at Meethack (Torino, 2024-06-18)]({{page.assets-meethack}}Secrets leakage detection & prevention.pdf)
