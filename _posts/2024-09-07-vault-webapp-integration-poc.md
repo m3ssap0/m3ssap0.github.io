@@ -7,7 +7,7 @@ assets: /assets/posts/2024-09-07-vault-webapp-integration-poc/
 
 I decided to develop this toy project to learn about [*HashiCorp Vault*](https://www.vaultproject.io/), in particular to focus on its integration with web applications. I was not able to find a complete enough example on the Internet to answer all of my doubts, so I decided to build it myself.
 
-The complete source code can be found the following repository: [https://github.com/m3ssap0/vault-webapp-integration-poc](https://github.com/m3ssap0/vault-webapp-integration-poc).
+The complete source code can be found in the following repository: [https://github.com/m3ssap0/vault-webapp-integration-poc](https://github.com/m3ssap0/vault-webapp-integration-poc).
 
 ## Table of Contents
 
