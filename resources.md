@@ -20,6 +20,7 @@ Have a look at my [Exploit-DB author page](https://www.exploit-db.com/?author=93
 ## Meethack
 
 * N-day Analysis:
+    * ["Black Project" challenge]({{page.assets-meethack}}Black Project.pdf)
     * [GitLab - CVE-2023-2825]({{page.assets-meethack}}GitLab - CVE-2023-2825.pdf)
     * [Cacti - CVE-2022-46169]({{page.assets-meethack}}Cacti - CVE-2022-46169.pdf)
     * [GitLab - CVE-2022-2884]({{page.assets-meethack}}GitLab - CVE-2022-2884.pdf)
@@ -30,7 +31,7 @@ Have a look at my [Exploit-DB author page](https://www.exploit-db.com/?author=93
 
 ## Talks
 
-* [Linux Day Torino 2024 - Secrets leakage detection & prevention]({{page.assets-talks}}ldto2024_secrets_leakage.pdf)
+* [Linux Day Torino 2024 - Secrets leakage detection & prevention - 2024-10-26]({{page.assets-talks}}ldto2024_secrets_leakage.pdf)
 
 ## CTF writeups
 
