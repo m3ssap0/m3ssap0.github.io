@@ -20,6 +20,7 @@ Have a look at my [Exploit-DB author page](https://www.exploit-db.com/?author=93
 ## Meethack
 
 * N-day Analysis:
+    * ["A really simple security bypass" challenge]({{page.assets-meethack}}A really simple security bypass.pdf)
     * ["Black Project" challenge]({{page.assets-meethack}}Black Project.pdf)
     * [GitLab - CVE-2023-2825]({{page.assets-meethack}}GitLab - CVE-2023-2825.pdf)
     * [Cacti - CVE-2022-46169]({{page.assets-meethack}}Cacti - CVE-2022-46169.pdf)
