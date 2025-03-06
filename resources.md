@@ -6,17 +6,6 @@ assets-meethack: /assets/resources/meethack/
 assets-talks: /assets/resources/talks/
 ---
 
-## Security advisories
-
-* GitHub Enterprise Server - Security misconfiguration was identified in GitHub Enterprise Server that allowed sensitive data exposure - [CVE-2024-6336](https://www.cve.org/CVERecord?id=CVE-2024-6336)
-    * Discovered together with my colleagues: [Omar](https://www.linkedin.com/in/omar-el-latif-71b312169/), [Giovanni](https://www.linkedin.com/in/giovanni-guido-a22535135/) and [Andrea](https://avalz.it/).
-* Cacti 1.2.24 - Open redirect in change password functionality - [GHSA-4pjv-rmrp-r59x](https://github.com/Cacti/cacti/security/advisories/GHSA-4pjv-rmrp-r59x) / [CVE-2023-39364](https://www.cve.org/CVERecord?id=CVE-2023-39364)
-* Cacti 1.2.24 - Authenticated command injection when using SNMP options - [GHSA-g6ff-58cj-x3cp](https://github.com/Cacti/cacti/security/advisories/GHSA-g6ff-58cj-x3cp) / [CVE-2023-39362](https://www.cve.org/CVERecord?id=CVE-2023-39362)
-
-## Exploits
-
-Have a look at my [Exploit-DB author page](https://www.exploit-db.com/?author=9361) (and on [GitHub](https://github.com/m3ssap0)).
-
 ## Meethack
 
 * N-day Analysis:
