@@ -396,13 +396,13 @@ Exploit executed on a [vulnerable containerized environment](https://github.com/
 
 ## Timeline
 
-* 2023-09-05 - Vulnerability disclosed by Cacti team.
-* 2023-08-07 - [CVE-2023-39362](https://www.cve.org/CVERecord?id=CVE-2023-39362) issued.
-* 2023-08-05 - CVE requested.
-* 2023-08-04 - Commits with the fix ([cb9ab92](https://github.com/Cacti/cacti/commit/cb9ab92f2580fc6cb9b64ce129655fb15e35d056), [4c26f39](https://github.com/Cacti/cacti/commit/4c26f39fa3567553192823a5e8096b187bbaddde)) and retest.
-* 2023-07-04 - Maintainers acknowledged the presence of the vulnerability.
-* 2023-07-03 - Finished the analysis, confirmed the vulnerability and reported it to the maintainers.
 * 2023-07-02 - Discovered the presence of a possible vulnerability.
+* 2023-07-03 - Finished the analysis, confirmed the vulnerability and reported it to the maintainers.
+* 2023-07-04 - Maintainers acknowledged the presence of the vulnerability.
+* 2023-08-04 - Commits with the fix ([cb9ab92](https://github.com/Cacti/cacti/commit/cb9ab92f2580fc6cb9b64ce129655fb15e35d056), [4c26f39](https://github.com/Cacti/cacti/commit/4c26f39fa3567553192823a5e8096b187bbaddde)) and retest.
+* 2023-08-05 - CVE requested.
+* 2023-08-07 - [CVE-2023-39362](https://www.cve.org/CVERecord?id=CVE-2023-39362) issued.
+* 2023-09-05 - Vulnerability disclosed by Cacti team.
 
 ## References
 
